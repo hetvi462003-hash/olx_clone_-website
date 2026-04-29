@@ -1,0 +1,241 @@
+.dashboard-page {
+  padding: 4rem 1.5rem;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  background: white;
+  padding: 2.5rem;
+  border-radius: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.user-profile-summary {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.user-avatar-main {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 800;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+
+.user-text h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.user-text p {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.dashboard-quick-stats {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.dash-stat-box {
+  background: #f8fafc;
+  padding: 1.25rem 2rem;
+  border-radius: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #3b82f6;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.dashboard-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 1rem;
+}
+
+.dashboard-tabs button {
+  padding: 0.75rem 1.5rem;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.dashboard-tabs button.active {
+  color: #3b82f6;
+}
+
+.dashboard-tabs button.active::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #3b82f6;
+  border-radius: 2px;
+}
+
+/* Request Cards */
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.request-card {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 60px 1fr 200px;
+  align-items: center;
+  gap: 2rem;
+  transition: transform 0.2s;
+}
+
+.request-card:hover {
+  transform: scale(1.01);
+}
+
+.req-icon {
+  width: 60px;
+  height: 60px;
+  background: #eff6ff;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+}
+
+.req-details h3 {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.req-details p {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status-badge.approved {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.status-badge.pending {
+  background: #fef9c3;
+  color: #854d0e;
+}
+
+.status-note {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-top: 0.5rem;
+}
+
+.remove-saved {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  color: #ef4444;
+}
+
+.btn-view-dash {
+  display: block;
+  text-align: center;
+  padding: 0.75rem;
+  background: #eff6ff;
+  color: #3b82f6;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-weight: 800;
+  margin-top: 1.5rem;
+  transition: all 0.2s;
+}
+
+.btn-view-dash:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+.settings-placeholder {
+  padding: 4rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  
+  .user-profile-summary {
+    flex-direction: column;
+  }
+  
+  .request-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+    gap: 1rem;
+  }
+  
+  .dashboard-tabs {
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+}

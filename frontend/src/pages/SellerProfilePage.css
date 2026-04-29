@@ -1,0 +1,133 @@
+.seller-profile-page {
+  padding: 3rem 1.5rem 6rem;
+}
+
+.profile-header-premium {
+  padding: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4rem;
+  border-radius: 2rem;
+  background: white;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.profile-main-info {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.profile-avatar-large {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border-radius: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 800;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+}
+
+.verified-badge {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background: #10b981;
+  color: white;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border: 4px solid white;
+}
+
+.profile-text-info h1 {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.member-date {
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.profile-stats-row {
+  display: flex;
+  gap: 2rem;
+}
+
+.profile-stat {
+  font-size: 1rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.profile-stat strong {
+  color: #1e293b;
+  font-weight: 800;
+  margin-right: 5px;
+}
+
+.btn-primary.btn-following {
+  background: #10b981;
+  border-color: #10b981;
+}
+
+.profile-actions-header {
+  display: flex;
+  gap: 1rem;
+}
+
+.seller-listings-section h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 2.5rem;
+}
+
+.seller-listings-section h2 span {
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.ad-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.ad-card:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 900px) {
+  .profile-header-premium {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem;
+  }
+  
+  .profile-main-info {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .profile-stats-row {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
