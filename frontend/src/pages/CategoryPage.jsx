@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useRef, useEffect } from 'react';
+import API from '../apiConfig';
 import './CategoryPage.css';
 
 const dummyData = {
@@ -101,7 +102,7 @@ const itemVariants = {
   show: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 24 } }
 };
 
-const API = 'http://localhost:5000';
+// Removed hardcoded API, now using imported config
 const imgSrc = (url) => url?.startsWith('/uploads/') ? `${API}${url}` : url;
 
 const ITEMS_PER_PAGE = 4;

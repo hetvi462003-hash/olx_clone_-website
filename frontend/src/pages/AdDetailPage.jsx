@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import API from '../apiConfig';
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import './AdDetailPage.css';
@@ -375,7 +376,7 @@ const adDetailsData = {
 };
 
 
-const API = 'http://localhost:5000';
+// Removed hardcoded API, now using imported config
 
 // Helper: resolve image URL (uploaded files start with /uploads/)
 const imgSrc = (url) => url?.startsWith('/uploads/') ? `${API}${url}` : url;

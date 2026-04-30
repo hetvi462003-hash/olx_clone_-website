@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import API from '../apiConfig';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './PostAd.css';
 
-const API = 'http://localhost:5000';
+// Removed hardcoded API, now using imported config
 
 export default function PostAd() {
   const location = useLocation();
