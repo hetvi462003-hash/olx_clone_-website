@@ -169,7 +169,7 @@ const adDetailsData = {
       'https://images.unsplash.com/photo-1547245324-d777c6f05e80?auto=format&fit=crop&q=80&w=800',
       'https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=800'
     ],
-    features: { beds: 'N/A', baths: 'N/A', yearBuilt: '2024', furnished: 'N/A', petsAllowed: 'N/A', pool: 'N/A', view: 'N/A' },
+    features: { mileage: '800 miles', transmission: 'Automatic', fuel: 'Petrol', yearBuilt: '2024', engine: '3.0L I6' },
     seller: { name: 'Island Motor Co.', memberSince: 'Member since Jan 2020', phone: '+1 (345) 555-4455' }
   },
   3: {
@@ -274,7 +274,7 @@ const adDetailsData = {
       'https://images.unsplash.com/photo-1664478546384-d97f51173067?auto=format&fit=crop&q=80&w=800',
       'https://images.unsplash.com/photo-1663499827990-147555a1edc1?auto=format&fit=crop&q=80&w=800'
     ],
-    features: { beds: 'N/A', baths: 'N/A', yearBuilt: '2022', furnished: 'N/A', petsAllowed: 'N/A', pool: 'N/A', view: 'N/A' },
+    features: { brand: 'Apple', model: 'iPhone 14 Pro Max', storage: '256GB', condition: 'Excellent', color: 'Deep Purple' },
     seller: { name: 'TechResale CJ', memberSince: 'Member since Jun 2022', phone: '+1 (345) 555-9988' }
   },
   9: {
@@ -597,36 +597,82 @@ export default function AdDetailPage() {
             
             {ad.features && (
               <div className="property-features-section">
-                <h3>Key Features</h3>
+                <h3>{ad.category === 'Real Estate' ? 'Property Details' : ad.category === 'Autos & Boats' ? 'Vehicle Specifications' : 'Product Details'}</h3>
                 <div className="features-grid">
-                  <div className="feature-tile">
-                    <span className="tile-icon">🛏️</span>
-                    <div className="tile-info">
-                      <span className="tile-label">Beds</span>
-                      <span className="tile-value">{ad.features.beds}</span>
-                    </div>
-                  </div>
-                  <div className="feature-tile">
-                    <span className="tile-icon">🛁</span>
-                    <div className="tile-info">
-                      <span className="tile-label">Baths</span>
-                      <span className="tile-value">{ad.features.baths}</span>
-                    </div>
-                  </div>
-                  <div className="feature-tile">
-                    <span className="tile-icon">🏗️</span>
-                    <div className="tile-info">
-                      <span className="tile-label">Built</span>
-                      <span className="tile-value">{ad.features.yearBuilt}</span>
-                    </div>
-                  </div>
-                  <div className="feature-tile">
-                    <span className="tile-icon">🏊</span>
-                    <div className="tile-info">
-                      <span className="tile-label">Pool</span>
-                      <span className="tile-value">{ad.features.pool}</span>
-                    </div>
-                  </div>
+                  {ad.category === 'Real Estate' && (
+                    <>
+                      {ad.features.beds && ad.features.beds !== 'N/A' && (
+                        <div className="feature-tile">
+                          <span className="tile-icon">🛏️</span>
+                          <div className="tile-info"><span className="tile-label">Beds</span><span className="tile-value">{ad.features.beds}</span></div>
+                        </div>
+                      )}
+                      {ad.features.baths && ad.features.baths !== 'N/A' && (
+                        <div className="feature-tile">
+                          <span className="tile-icon">🛁</span>
+                          <div className="tile-info"><span className="tile-label">Baths</span><span className="tile-value">{ad.features.baths}</span></div>
+                        </div>
+                      )}
+                      {ad.features.pool && ad.features.pool !== 'N/A' && (
+                        <div className="feature-tile">
+                          <span className="tile-icon">🏊</span>
+                          <div className="tile-info"><span className="tile-label">Pool</span><span className="tile-value">{ad.features.pool}</span></div>
+                        </div>
+                      )}
+                      {ad.features.view && ad.features.view !== 'N/A' && (
+                        <div className="feature-tile">
+                          <span className="tile-icon">🌅</span>
+                          <div className="tile-info"><span className="tile-label">View</span><span className="tile-value">{ad.features.view}</span></div>
+                        </div>
+                      )}
+                    </>
+                  )}
+
+                  {ad.category === 'Autos & Boats' && (
+                    <>
+                      {ad.features.yearBuilt && (
+                        <div className="feature-tile">
+                          <span className="tile-icon">📅</span>
+                          <div className="tile-info"><span className="tile-label">Year</span><span className="tile-value">{ad.features.yearBuilt}</span></div>
+                        </div>
+                      )}
+                      {ad.features.mileage && (
+                        <div className="feature-tile">
+                          <span className="tile-icon">🛣️</span>
+                          <div className="tile-info"><span className="tile-label">Mileage</span><span className="tile-value">{ad.features.mileage}</span></div>
+                        </div>
+                      )}
+                      {ad.features.transmission && (
+                        <div className="feature-tile">
+                          <span className="tile-icon">⚙️</span>
+                          <div className="tile-info"><span className="tile-label">Type</span><span className="tile-value">{ad.features.transmission}</span></div>
+                        </div>
+                      )}
+                    </>
+                  )}
+
+                  {ad.category === 'Buy & Sell' && (
+                    <>
+                      {ad.features.brand && (
+                        <div className="feature-tile">
+                          <span className="tile-icon">🏷️</span>
+                          <div className="tile-info"><span className="tile-label">Brand</span><span className="tile-value">{ad.features.brand}</span></div>
+                        </div>
+                      )}
+                      {ad.features.storage && (
+                        <div className="feature-tile">
+                          <span className="tile-icon">💾</span>
+                          <div className="tile-info"><span className="tile-label">Storage</span><span className="tile-value">{ad.features.storage}</span></div>
+                        </div>
+                      )}
+                      {ad.features.condition && (
+                        <div className="feature-tile">
+                          <span className="tile-icon">✨</span>
+                          <div className="tile-info"><span className="tile-label">Condition</span><span className="tile-value">{ad.features.condition}</span></div>
+                        </div>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
             )}

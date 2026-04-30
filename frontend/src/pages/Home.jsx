@@ -1,17 +1,17 @@
 import { 
-  Home as HomeIcon, Car, ShoppingBag, Briefcase, Wrench, Users 
+  Home as HomeIcon, Car, ShoppingBag, Briefcase, Wrench, Users, Search, ArrowRight 
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
 const categories = [
-  { id: 1, slug: 'real-estate', name: 'Real Estate', icon: <HomeIcon size={32} />, count: '2,311 ads', color: '#10b981' },
-  { id: 2, slug: 'autos-boats', name: 'Autos & Boats', icon: <Car size={32} />, count: '2,608 ads', color: '#f59e0b' },
-  { id: 3, slug: 'buy-sell', name: 'Buy & Sell', icon: <ShoppingBag size={32} />, count: '11,916 ads', color: '#3b82f6' },
-  { id: 4, slug: 'jobs', name: 'Jobs', icon: <Briefcase size={32} />, count: '411 ads', color: '#8b5cf6' },
-  { id: 5, slug: 'services-specials', name: 'Services & Specials', icon: <Wrench size={32} />, count: '929 ads', color: '#ec4899' },
-  { id: 6, slug: 'community', name: 'Community', icon: <Users size={32} />, count: '29 ads', color: '#14b8a6' },
+  { id: 1, slug: 'real-estate', name: 'Real Estate', icon: <HomeIcon size={28} />, count: '2,311 ads', color: '#10b981' },
+  { id: 2, slug: 'autos-boats', name: 'Autos & Boats', icon: <Car size={28} />, count: '2,608 ads', color: '#f59e0b' },
+  { id: 3, slug: 'buy-sell', name: 'Buy & Sell', icon: <ShoppingBag size={28} />, count: '11,916 ads', color: '#3b82f6' },
+  { id: 4, slug: 'jobs', name: 'Jobs', icon: <Briefcase size={28} />, count: '411 ads', color: '#8b5cf6' },
+  { id: 5, slug: 'services-specials', name: 'Services & Specials', icon: <Wrench size={28} />, count: '929 ads', color: '#ec4899' },
+  { id: 6, slug: 'community', name: 'Community', icon: <Users size={28} />, count: '29 ads', color: '#14b8a6' },
 ];
 
 const featuredAds = [
@@ -29,16 +29,24 @@ const containerVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 }
+    transition: { staggerChildren: 0.12, delayChildren: 0.3 }
   }
 };
 
 const itemVariants = {
-  hidden: { y: 30, opacity: 0 },
-  show: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 300, damping: 24 } }
+  hidden: { y: 40, opacity: 0, scale: 0.95 },
+  show: { 
+    y: 0, 
+    opacity: 1, 
+    scale: 1,
+    transition: { type: "spring", stiffness: 260, damping: 20 } 
+  }
 };
 
 export default function Home() {
+  const { scrollYProgress } = useScroll();
+  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -100]);
+
   return (
     <motion.div 
       className="home-page"
@@ -46,31 +54,86 @@ export default function Home() {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
     >
+      {/* Animated Background Elements */}
+      <div className="bg-elements">
+        <motion.div 
+          className="blob blob-1"
+          animate={{ 
+            x: [0, 100, 0], 
+            y: [0, 50, 0],
+            scale: [1, 1.2, 1]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div 
+          className="blob blob-2"
+          animate={{ 
+            x: [0, -80, 0], 
+            y: [0, 120, 0],
+            scale: [1.2, 1, 1.2]
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
+
       {/* Hero Banner Area */}
       <section className="hero-banner">
         <div className="container">
           <motion.div 
             className="hero-content"
-            initial={{ y: 40, opacity: 0, scale: 0.95 }}
-            animate={{ y: 0, opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            style={{ y: heroY }}
+            initial={{ y: 60, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1>Discover & Trade in the Cayman Islands</h1>
-            <p>The premium online classifieds to buy, sell, and connect instantly.</p>
+            <motion.div 
+              className="hero-badge"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.5, type: "spring" }}
+            >
+              ✨ Trusted by 50,000+ Islanders
+            </motion.div>
+            <h1>Find Exactly What <br /><span>You're Looking For.</span></h1>
+            <p>The Cayman Islands' most premium marketplace for elite deals and community connections.</p>
+            
+            <motion.div 
+              className="hero-search-container"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
+              <div className="search-wrapper glass-card">
+                <Search className="search-icon" />
+                <input type="text" placeholder="Search for cars, homes, services..." />
+                <button className="btn-primary">
+                  Search <ArrowRight size={18} />
+                </button>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Categories */}
       <section className="categories-section container">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          Explore Categories
-        </motion.h2>
+        <div className="section-header">
+          <motion.h2 
+            className="section-title"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            Elite Categories
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+          >
+            Browse through our curated selections
+          </motion.p>
+        </div>
         
         <motion.div 
           className="category-grid"
@@ -80,15 +143,24 @@ export default function Home() {
           viewport={{ once: true, margin: "-50px" }}
         >
           {categories.map((cat) => (
-            <motion.div key={cat.id} variants={itemVariants} whileHover={{ y: -8, transition: { duration: 0.2 } }}>
+            <motion.div 
+              key={cat.id} 
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
               <Link to={`/category/${cat.slug}`} className="category-link">
-                <div className="category-card glass-card" style={{height: "100%"}}>
-                  <div className="category-icon" style={{ backgroundColor: `${cat.color}15`, color: cat.color }}>
+                <div className="category-card glass-card">
+                  <div className="category-icon-wrapper" style={{ '--accent': cat.color }}>
+                    <div className="category-icon-bg" />
                     {cat.icon}
                   </div>
                   <div className="category-info">
                     <h3>{cat.name}</h3>
                     <p>{cat.count}</p>
+                  </div>
+                  <div className="category-arrow">
+                    <ArrowRight size={16} />
                   </div>
                 </div>
               </Link>
@@ -99,14 +171,20 @@ export default function Home() {
 
       {/* Featured Ads */}
       <section className="featured-section container">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          Featured Ads
-        </motion.h2>
+        <div className="section-header">
+          <motion.h2 
+            className="section-title"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            Premium Listings
+          </motion.h2>
+          <motion.div className="header-actions">
+            <Link to="/search" className="view-all">View All Ads <ArrowRight size={16} /></Link>
+          </motion.div>
+        </div>
+
         <motion.div 
           className="ads-grid"
           variants={containerVariants}
@@ -115,18 +193,29 @@ export default function Home() {
           viewport={{ once: true, margin: "-50px" }}
         >
           {featuredAds.map((ad) => (
-            <motion.div key={ad.id} variants={itemVariants} whileHover={{ y: -10, transition: { duration: 0.2 } }}>
+            <motion.div 
+              key={ad.id} 
+              variants={itemVariants}
+              whileHover={{ y: -12 }}
+            >
               <Link to={`/ad/${ad.id}`} className="ad-link">
-                <div className="ad-card glass-card" style={{height: "100%"}}>
+                <div className="ad-card glass-card">
                   <div className="ad-image">
-                    <img src={ad.image} alt={ad.title} />
-                    <span className="ad-category-badge">{ad.categoryLabel}</span>
+                    <img src={ad.image} alt={ad.title} loading="lazy" />
+                    <div className="ad-overlay">
+                      <span className="ad-category-badge">{ad.categoryLabel}</span>
+                    </div>
                   </div>
                   <div className="ad-details">
                     <h3>{ad.title}</h3>
-                    <p className="ad-price">{ad.price}</p>
-                    <div className="ad-meta">
-                      <span>{ad.location}</span>
+                    <div className="ad-meta-top">
+                      <span className="ad-location">{ad.location}</span>
+                    </div>
+                    <div className="ad-footer">
+                      <p className="ad-price">{ad.price}</p>
+                      <button className="ad-favorite-btn">
+                        <ArrowRight size={18} />
+                      </button>
                     </div>
                   </div>
                 </div>

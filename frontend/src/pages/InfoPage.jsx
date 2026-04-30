@@ -1,4 +1,4 @@
-import { useParams, Link, useLocation } from 'react-router-dom';
+import { useParams, Link, useLocation, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Building, Briefcase, Handshake, ShieldAlert, 
@@ -6,6 +6,22 @@ import {
   MessageSquare, Flag, HeadphonesIcon 
 } from 'lucide-react';
 import './InfoPage.css';
+
+// Map old page IDs to new premium routes
+const routeMap = {
+  'about-us': '/about',
+  'advertise-with-us': '/advertise',
+  'careers': '/careers',
+  'partners': '/partners',
+  'safety-tips': '/safety',
+  'posting-policy': '/posting-policy',
+  'privacy-policy': '/privacy-policy',
+  'terms-conditions': '/terms-conditions',
+  'general-questions': '/support',
+  'feedback': '/feedback',
+  'report-ad': '/report-ad',
+  'support': '/support'
+};
 
 const sidebarLinks = [
   { id: 'about-us', label: 'About Us', icon: <Building size={18} /> },
@@ -99,12 +115,17 @@ const pageContents = {
 
 export default function InfoPage() {
   const { pageId } = useParams();
-  const location = useLocation();
-  const pageData = pageContents[pageId] || {
-    title: 'Page Not Found',
-    subtitle: 'Error 404',
-    content: ['The page you are looking for does not exist or has been moved.']
-  };
+  
+  // If this is an old route that now has a premium version, redirect to it
+  if (routeMap[pageId]) {
+    return <Navigate to={routeMap[pageId]} replace />;
+  }
+
+  const pageData = pageContents[pageId];
+
+  if (!pageData) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <div className="info-page container">

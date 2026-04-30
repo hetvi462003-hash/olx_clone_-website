@@ -20,7 +20,7 @@ export default function Footer() {
           transition={{ delay: 0.2 }}
         >
           <Link to="/" className="navbar-logo">
-            eCay<span>Trade+</span>
+            eCay<span>Trade<span className="plus">+</span></span>
           </Link>
           <p className="footer-desc">
             The premier online classifieds for the Cayman Islands. Buy, Sell, and Trade with confidence.
@@ -32,28 +32,28 @@ export default function Footer() {
             {
               title: "About us",
               links: [
-                {name: "About us", path: "/page/about-us"},
-                {name: "Advertise with us", path: "/page/advertise-with-us"},
-                {name: "Careers", path: "/page/careers"},
-                {name: "Partners", path: "/page/partners"}
+                {name: "About us", path: "/about"},
+                {name: "Advertise with us", path: "/advertise"},
+                {name: "Careers", path: "/careers"},
+                {name: "Partners", path: "/partners"}
               ]
             },
             {
               title: "Guides & Help",
               links: [
-                {name: "Safety Tips / Scams", path: "/page/safety-tips"},
-                {name: "Posting Policy", path: "/page/posting-policy"},
-                {name: "Privacy Policy", path: "/page/privacy-policy"},
-                {name: "Terms & Conditions", path: "/page/terms-conditions"}
+                {name: "Safety Tips / Scams", path: "/safety"},
+                {name: "Posting Policy", path: "/posting-policy"},
+                {name: "Privacy Policy", path: "/privacy-policy"},
+                {name: "Terms & Conditions", path: "/terms-conditions"}
               ]
             },
             {
               title: "Contact Us",
               links: [
-                {name: "General Questions", path: "/page/general-questions"},
-                {name: "Feedback", path: "/page/feedback"},
-                {name: "Report Ad", path: "/page/report-ad"},
-                {name: "Support", path: "/page/support"}
+                {name: "General Questions", path: "/support"},
+                {name: "Feedback", path: "/feedback"},
+                {name: "Report Ad", path: "/report-ad"},
+                {name: "Support", path: "/support"}
               ]
             }
           ].map((column, colIdx) => (

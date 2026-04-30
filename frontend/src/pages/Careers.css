@@ -1,0 +1,151 @@
+.careers-page {
+  padding-bottom: 8rem;
+}
+
+.careers-hero {
+  padding: 8rem 0;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 4.5rem;
+  font-weight: 850;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.hero-content h1 span {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  color: var(--text-muted);
+  max-width: 650px;
+  margin: 0 auto 3rem;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.hero-btns {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-top: 4rem;
+  margin-bottom: 8rem;
+}
+
+.culture-card {
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.culture-card h3 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 1.5rem 0 1rem;
+}
+
+.culture-card p {
+  color: var(--text-muted);
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.openings-section {
+  margin-bottom: 8rem;
+}
+
+.jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.job-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2.5rem;
+  cursor: pointer;
+}
+
+.job-info h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.job-meta {
+  display: flex;
+  gap: 2rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.job-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.apply-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--primary-color);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.perks-wrapper {
+  padding: 4rem;
+  text-align: center;
+}
+
+.perks-wrapper h2 {
+  font-size: 2.5rem;
+  font-weight: 850;
+  margin-bottom: 3rem;
+}
+
+.perks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.perk {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+}
+
+@media (max-width: 1024px) {
+  .culture-grid, .perks-grid {
+    grid-template-columns: 1fr;
+  }
+  .job-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .job-meta {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
