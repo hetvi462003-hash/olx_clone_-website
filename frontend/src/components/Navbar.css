@@ -65,6 +65,80 @@
   padding: 0.5rem 0;
 }
 
+/* Mobile Responsive Styles */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+.mobile-nav-drawer {
+  position: fixed;
+  top: 80px;
+  right: 1rem;
+  width: calc(100% - 2rem);
+  max-width: 400px;
+  padding: 2rem !important;
+  z-index: 1000;
+}
+
+.mobile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mobile-links a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.mobile-post-btn {
+  background: var(--primary);
+  color: white !important;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 1rem;
+}
+
+.mobile-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+}
+
+.mobile-theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+@media (max-width: 992px) {
+  .navbar-links, .hide-mobile {
+    display: none !important;
+  }
+  
+  .mobile-menu-btn {
+    display: block;
+  }
+  
+  .navbar-actions {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-logo span {
+    display: none;
+  }
+}
+
 .nav-link:hover, .nav-link.active {
   color: var(--text-main);
 }
@@ -108,9 +182,60 @@
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-.user-nav-item {
+.notification-wrapper {
   position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.65rem;
+  padding: 2px 5px;
+  border-radius: 10px;
+  border: 2px solid var(--bg-main);
+  font-weight: bold;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 280px;
+  margin-top: 1rem;
+  padding: 0 !important;
+  z-index: 1001;
+  overflow: hidden;
+}
+
+.notification-dropdown .dropdown-header {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  background: rgba(var(--primary), 0.05);
+}
+
+.notification-item {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.2s;
   cursor: pointer;
+}
+
+.notification-item:hover {
+  background: rgba(var(--primary), 0.05);
+}
+
+.notification-item p {
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-main);
+}
+
+.notification-item span {
+  font-size: 0.75rem;
+  color: var(--text-muted);
 }
 
 .user-initial {

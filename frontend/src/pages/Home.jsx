@@ -1,7 +1,8 @@
 import { 
-  Home as HomeIcon, Car, ShoppingBag, Briefcase, Wrench, Users, Search, ArrowRight 
+  Home as HomeIcon, Car, ShoppingBag, Briefcase, Wrench, Users, Search, ArrowRight, Heart 
 } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
@@ -46,6 +47,22 @@ const itemVariants = {
 export default function Home() {
   const { scrollYProgress } = useScroll();
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -100]);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [savedAds, setSavedAds] = useState([]);
+
+  const filteredAds = featuredAds.filter(ad => 
+    ad.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    ad.categoryLabel.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const toggleSave = (e, adId) => {
+    e.preventDefault();
+    if (savedAds.includes(adId)) {
+      setSavedAds(savedAds.filter(id => id !== adId));
+    } else {
+      setSavedAds([...savedAds, adId]);
+    }
+  };
 
   return (
     <motion.div 
@@ -77,8 +94,18 @@ export default function Home() {
       </div>
 
       {/* Hero Banner Area */}
-      <section className="hero-banner">
-        <div className="container">
+      <section className="hero">
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className="hero-video"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-top-view-of-a-luxury-resort-34352-large.mp4" type="video/mp4" />
+        </video>
+        <div className="hero-overlay"></div>
+        <div className="hero-content container">
           <motion.div 
             className="hero-content"
             style={{ y: heroY }}
@@ -105,7 +132,12 @@ export default function Home() {
             >
               <div className="search-wrapper glass-card">
                 <Search className="search-icon" />
-                <input type="text" placeholder="Search for cars, homes, services..." />
+                <input 
+                  type="text" 
+                  placeholder="Search for cars, homes, services..." 
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                />
                 <button className="btn-primary">
                   Search <ArrowRight size={18} />
                 </button>
@@ -192,7 +224,7 @@ export default function Home() {
           whileInView="show"
           viewport={{ once: true, margin: "-50px" }}
         >
-          {featuredAds.map((ad) => (
+          {filteredAds.map((ad) => (
             <motion.div 
               key={ad.id} 
               variants={itemVariants}
@@ -213,8 +245,11 @@ export default function Home() {
                     </div>
                     <div className="ad-footer">
                       <p className="ad-price">{ad.price}</p>
-                      <button className="ad-favorite-btn">
-                        <ArrowRight size={18} />
+                      <button 
+                        className={`ad-favorite-btn ${savedAds.includes(ad.id) ? 'active' : ''}`}
+                        onClick={(e) => toggleSave(e, ad.id)}
+                      >
+                        <Heart size={18} fill={savedAds.includes(ad.id) ? "currentColor" : "none"} />
                       </button>
                     </div>
                   </div>

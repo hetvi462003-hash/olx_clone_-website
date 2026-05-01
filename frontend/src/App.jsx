@@ -21,6 +21,7 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ProtectedRoute from './components/ProtectedRoute';
+import Assistant from './components/Assistant';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 
@@ -53,6 +54,7 @@ function App() {
           <Route path="/page/:pageId" element={<InfoPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <Assistant />
       </main>
       <Footer />
     </div>
