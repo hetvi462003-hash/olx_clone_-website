@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useAuth } from '../context/AuthContext';
 import './Dashboard.css';
 
-const myRequests = [
-  { id: 1, title: 'Harmony 7 - End Unit', type: 'Viewing', date: '2026-05-02', time: '10:30 AM', status: 'Approved', seller: 'Bock Property Ltd' },
-  { id: 2, title: 'Senior Software Engineer', type: 'Interview', date: '2026-05-05', time: '02:00 PM', status: 'Pending', seller: 'Tech Solutions Ltd' },
-];
-
-const savedAds = [
-  { id: 3, title: 'Modern Studio in West Bay', price: 'CI$ 1,800/mo', image: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&q=80&w=400' },
-  { id: 4, title: '2022 Tesla Model 3', price: 'CI$ 45,000', image: 'https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&q=80&w=400' },
-];
-
 export default function Dashboard() {
+  const { user, loading } = useAuth();
   const [activeTab, setActiveTab] = useState('requests');
+
+  // Initialize empty data for new users
+  const myRequests = [];
+  const savedAds = [];
+
+  if (loading) return <div className="loading-screen">Loading dashboard...</div>;
+  if (!user) return <div className="loading-screen">Please login to view your dashboard.</div>;
 
   return (
     <motion.div 
@@ -24,9 +23,9 @@ export default function Dashboard() {
     >
       <div className="dashboard-header">
         <div className="user-profile-summary">
-          <div className="user-avatar-main">JD</div>
+          <div className="user-avatar-main">{user.name.charAt(0)}</div>
           <div className="user-text">
-            <h1>Welcome back, John!</h1>
+            <h1>Welcome back, {user.name.split(' ')[0]}!</h1>
             <p>Manage your bookings, messages, and saved items.</p>
           </div>
         </div>
