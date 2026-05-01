@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { PlusCircle, User, Bell, Menu } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 import './Navbar.css';
 
 export default function Navbar() {
@@ -11,6 +12,9 @@ export default function Navbar() {
   
   // Transform values for scroll effect
   const headerPadding = useTransform(scrollY, [0, 100], ["1.5rem 0", "1rem 0"]);
+
+  const { user, logout } = useAuth();
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   useEffect(() => {
     const unsubscribe = scrollY.on("change", (v) => {
@@ -57,11 +61,32 @@ export default function Navbar() {
             <span>Post an Ad</span>
           </Link>
 
-          <Link to="/dashboard" className="account-trigger">
-            <div className="avatar-wrapper">
-              <User size={18} />
+          {user ? (
+            <div className="user-nav-item" onClick={() => setShowUserMenu(!showUserMenu)}>
+              <motion.div className="avatar-wrapper" whileHover={{ scale: 1.05 }}>
+                <span className="user-initial">{user.name.charAt(0)}</span>
+              </motion.div>
+              {showUserMenu && (
+                <motion.div 
+                  className="user-dropdown glass-card"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <div className="dropdown-header">
+                    <strong>{user.name}</strong>
+                    <span>{user.email}</span>
+                  </div>
+                  <Link to="/dashboard" className="dropdown-item">My Dashboard</Link>
+                  <button onClick={logout} className="dropdown-item logout-btn">Logout</button>
+                </motion.div>
+              )}
             </div>
-          </Link>
+          ) : (
+            <div className="auth-links">
+              <Link to="/login" className="nav-link login-link">Login</Link>
+              <Link to="/signup" className="signup-btn-mini">Sign Up</Link>
+            </div>
+          )}
           
           <button className="mobile-menu-btn">
             <Menu size={24} />

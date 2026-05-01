@@ -18,7 +18,10 @@ import InfoPage from './pages/InfoPage';
 import AdDetailPage from './pages/AdDetailPage';
 import SellerProfilePage from './pages/SellerProfilePage';
 import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import { Navigate } from 'react-router-dom';
+import { useAuth } from './context/AuthContext';
 
 function App() {
   return (
@@ -27,6 +30,8 @@ function App() {
       <main style={{ paddingTop: '80px' }}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/advertise" element={<Advertise />} />

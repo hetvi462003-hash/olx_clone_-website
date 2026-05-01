@@ -30,7 +30,10 @@ mongoose
 
 // ── Routes ────────────────────────────────────────────────────────
 const adsRouter = require('./routes/ads');
+const authRouter = require('./routes/auth');
+
 app.use('/api/ads', adsRouter);
+app.use('/api/auth', authRouter);
 
 app.get('/api/health', (req, res) => {
   res.json({ message: 'API is running', status: 'OK' });
