@@ -20,6 +20,7 @@ import SellerProfilePage from './pages/SellerProfilePage';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import ProtectedRoute from './components/ProtectedRoute';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 
@@ -44,11 +45,11 @@ function App() {
           <Route path="/posting-policy" element={<LegalPage />} />
           <Route path="/report-ad" element={<ReportAd />} />
           <Route path="/feedback" element={<Feedback />} />
-          <Route path="/post-ad" element={<PostAd />} />
+          <Route path="/post-ad" element={<ProtectedRoute><PostAd /></ProtectedRoute>} />
           <Route path="/category/:id" element={<CategoryPage />} />
           <Route path="/ad/:id" element={<AdDetailPage />} />
           <Route path="/seller/:name" element={<SellerProfilePage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/page/:pageId" element={<InfoPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
